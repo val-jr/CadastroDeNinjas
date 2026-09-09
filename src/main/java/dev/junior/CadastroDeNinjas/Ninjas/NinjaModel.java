@@ -1,10 +1,9 @@
-package dev.junior.CadastroDeNinjas;
+package dev.junior.CadastroDeNinjas.Ninjas;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import dev.junior.CadastroDeNinjas.Missoes.MissoesModel;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -13,9 +12,18 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    // @ManyToOne - Vários Ninjas em uma missão.
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") // Foreing Key | chave estrangeira
+    private MissoesModel missoes;
+
 
     public NinjaModel() {
     }
